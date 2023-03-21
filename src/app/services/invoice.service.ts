@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Employee} from "../models/employee";
+import {Invoice} from "../models/invoice";
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Baseurl } from '../models/baseurl';
@@ -8,9 +8,9 @@ import { Baseurl } from '../models/baseurl';
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeeService {
+export class InvoiceService {
 
-  baseurl = Baseurl.baseurl;;
+  baseurl = Baseurl.baseurl;
 
   constructor(private http: HttpClient) { }
 
@@ -21,32 +21,32 @@ export class EmployeeService {
     }),
   };
 
-  GetAllEmployees(): Observable<Employee[]>{
-    return this.http.get<Employee[]>(this.baseurl + '/api/Employee/GetAllEmployees').pipe(retry(1), catchError(this.errorHandl));
+  GetAllInvoices(): Observable<Invoice[]>{
+    return this.http.get<Invoice[]>(this.baseurl + '/api/Invoice/GetAllInvoices').pipe(retry(1), catchError(this.errorHandl));
   }
 
-  CreateEmployee(employee: Employee) : Observable<boolean>{
+  CreateInvoice(invoice: Invoice) : Observable<boolean>{
     return this.http.post<boolean>(
-      this.baseurl + '/api/Employee/CreateEmployee',
-      JSON.stringify(employee),
+      this.baseurl + '/api/Invoice/CreateInvoice',
+      JSON.stringify(invoice),
       this.httpOptions
     ).pipe(retry(1), catchError(this.errorHandl));
   }
-  GetEmployeeById(id: any): Observable<Employee> {
+  GetInvoiceById(id: any): Observable<Invoice> {
     return this.http
-      .get<Employee>(this.baseurl + '/api/Employee/GetEmployeeById?id=' + id)
+      .get<Invoice>(this.baseurl + '/api/Invoice/GetInvoiceById?id=' + id)
       .pipe(retry(1), catchError(this.errorHandl));
   }
-  DeleteEmployee(id: number) {
+  DeleteInvoice(id: number) {
     return this.http
-      .delete<Employee>(this.baseurl + '/api/Employee/DeleteEmployee?id=' + id, this.httpOptions)
+      .delete<Invoice>(this.baseurl + '/api/Employee/DeleteInvoice?id=' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl));
   }
-  UpdateEmployee(id:any, data:Employee): Observable<Employee> {
-    data.id=id;
+  UpdateInvoice(id:any, data:Invoice): Observable<Invoice> {
+    data.invoiceId=id;
     return this.http
-      .put<Employee>(
-        this.baseurl + '/api/Employee/UpdateEmployee',
+      .put<Invoice>(
+        this.baseurl + '/api/Invoice/UpdateInvoice',
         JSON.stringify(data),
         this.httpOptions
       )

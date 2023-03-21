@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Employee} from "../models/employee";
+import {Department} from "../models/department";
+import {Baseurl} from "../models/baseurl";
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { Baseurl } from '../models/baseurl';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeeService {
+export class DepartmentService {
 
-  baseurl = Baseurl.baseurl;;
+  baseurl = Baseurl.baseurl;
 
   constructor(private http: HttpClient) { }
 
@@ -21,32 +21,32 @@ export class EmployeeService {
     }),
   };
 
-  GetAllEmployees(): Observable<Employee[]>{
-    return this.http.get<Employee[]>(this.baseurl + '/api/Employee/GetAllEmployees').pipe(retry(1), catchError(this.errorHandl));
+  GetAllDepartments(): Observable<Department[]>{
+    return this.http.get<Department[]>(this.baseurl + '/api/Department/GetAllDepartments').pipe(retry(1), catchError(this.errorHandl));
   }
 
-  CreateEmployee(employee: Employee) : Observable<boolean>{
+  CreateDepartment(department: Department) : Observable<boolean>{
     return this.http.post<boolean>(
-      this.baseurl + '/api/Employee/CreateEmployee',
-      JSON.stringify(employee),
+      this.baseurl + '/api/Department/CreateDepartment',
+      JSON.stringify(department),
       this.httpOptions
     ).pipe(retry(1), catchError(this.errorHandl));
   }
-  GetEmployeeById(id: any): Observable<Employee> {
+  GetDepartmentById(id: any): Observable<Department> {
     return this.http
-      .get<Employee>(this.baseurl + '/api/Employee/GetEmployeeById?id=' + id)
+      .get<Department>(this.baseurl + '/api/Department/GetDepartmentById?id=' + id)
       .pipe(retry(1), catchError(this.errorHandl));
   }
-  DeleteEmployee(id: number) {
+  DeleteDepartment(id: number) {
     return this.http
-      .delete<Employee>(this.baseurl + '/api/Employee/DeleteEmployee?id=' + id, this.httpOptions)
+      .delete<Department>(this.baseurl + '/api/Department/DeleteDepartment?id=' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl));
   }
-  UpdateEmployee(id:any, data:Employee): Observable<Employee> {
+  UpdateDepartment(id:any, data:Department): Observable<Department> {
     data.id=id;
     return this.http
-      .put<Employee>(
-        this.baseurl + '/api/Employee/UpdateEmployee',
+      .put<Department>(
+        this.baseurl + '/api/Department/UpdateDepartment',
         JSON.stringify(data),
         this.httpOptions
       )

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Employee} from "../models/employee";
+import {Order} from "../models/order";
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Baseurl } from '../models/baseurl';
@@ -8,7 +8,7 @@ import { Baseurl } from '../models/baseurl';
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeeService {
+export class OrderService {
 
   baseurl = Baseurl.baseurl;;
 
@@ -21,32 +21,32 @@ export class EmployeeService {
     }),
   };
 
-  GetAllEmployees(): Observable<Employee[]>{
-    return this.http.get<Employee[]>(this.baseurl + '/api/Employee/GetAllEmployees').pipe(retry(1), catchError(this.errorHandl));
+  GetAllOrders(): Observable<Order[]>{
+    return this.http.get<Order[]>(this.baseurl + '/api/Order/GetAllOrders').pipe(retry(1), catchError(this.errorHandl));
   }
 
-  CreateEmployee(employee: Employee) : Observable<boolean>{
+  CreateOrder(order: Order) : Observable<boolean>{
     return this.http.post<boolean>(
-      this.baseurl + '/api/Employee/CreateEmployee',
-      JSON.stringify(employee),
+      this.baseurl + '/api/Order/CreateOrder',
+      JSON.stringify(order),
       this.httpOptions
     ).pipe(retry(1), catchError(this.errorHandl));
   }
-  GetEmployeeById(id: any): Observable<Employee> {
+  GetOrderById(id: any): Observable<Order> {
     return this.http
-      .get<Employee>(this.baseurl + '/api/Employee/GetEmployeeById?id=' + id)
+      .get<Order>(this.baseurl + '/api/Order/GetOrderById?id=' + id)
       .pipe(retry(1), catchError(this.errorHandl));
   }
-  DeleteEmployee(id: number) {
+  DeleteOrder(id: number) {
     return this.http
-      .delete<Employee>(this.baseurl + '/api/Employee/DeleteEmployee?id=' + id, this.httpOptions)
+      .delete<Order>(this.baseurl + '/api/Order/DeleteOrder?id=' + id, this.httpOptions)
       .pipe(retry(1), catchError(this.errorHandl));
   }
-  UpdateEmployee(id:any, data:Employee): Observable<Employee> {
+  UpdateOrder(id:any, data:Order): Observable<Order> {
     data.id=id;
     return this.http
-      .put<Employee>(
-        this.baseurl + '/api/Employee/UpdateEmployee',
+      .put<Order>(
+        this.baseurl + '/api/Order/UpdateOrder',
         JSON.stringify(data),
         this.httpOptions
       )
