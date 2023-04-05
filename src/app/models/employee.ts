@@ -8,7 +8,7 @@ export class Employee{
    birthDate:Date = new Date("1970-01-01")
    deleted:boolean=false 
 }
-enum UserStatus{
+export enum UserStatus{
     Accountant,
     BackOffice,
     Contractor,

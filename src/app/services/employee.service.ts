@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Employee} from "../models/employee";
+import {UserStatus} from "../models/employee";
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Baseurl } from '../models/baseurl';
@@ -26,6 +27,7 @@ export class EmployeeService {
   }
 
   CreateEmployee(employee: Employee) : Observable<boolean>{
+    employee.userStatus=UserStatus.Contractor;
     return this.http.post<boolean>(
       this.baseurl + '/api/Employee/CreateEmployee',
       JSON.stringify(employee),
@@ -37,6 +39,11 @@ export class EmployeeService {
       .get<Employee>(this.baseurl + '/api/Employee/GetEmployeeById?id=' + id)
       .pipe(retry(1), catchError(this.errorHandl));
   }
+  GetEmployeeByEmail(email: any): Observable<Employee> {
+    return this.http
+      .get<Employee>(this.baseurl + '/api/Employee/GetEmployeeByEmail?email=' + email)
+      .pipe(retry(1), catchError(this.errorHandl));
+  }
   DeleteEmployee(id: number) {
     return this.http
       .delete<Employee>(this.baseurl + '/api/Employee/DeleteEmployee?id=' + id, this.httpOptions)
@@ -44,6 +51,7 @@ export class EmployeeService {
   }
   UpdateEmployee(id:any, data:Employee): Observable<Employee> {
     data.id=id;
+    data.userStatus=UserStatus.Contractor;
     return this.http
       .put<Employee>(
         this.baseurl + '/api/Employee/UpdateEmployee',

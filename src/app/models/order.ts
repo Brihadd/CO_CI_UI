@@ -12,11 +12,12 @@ export class Order{
     orderState:OrderState=OrderState.New
     info:string=''
   }
-  enum OrderState{
+  export enum OrderState{
     New,
     Canceled,
     ManagerApproved,
     ContractorApproved,
     Active,
-    Expired
+    Expired,
+    Default
 }

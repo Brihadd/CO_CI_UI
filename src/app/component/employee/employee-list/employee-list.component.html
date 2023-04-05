@@ -1,0 +1,74 @@
+<div class="container wrapper d-none d-lg-block">
+    <div class="row">
+        <!-- Issue table -->
+        <div class="col-md-12">
+            <div class="inner">
+                <h3 >Employees</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name </th>
+                            <th scope="col">Surname</th>
+                            <th scope="col">Phonenumber</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">BirthDate</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let employee of  EmployeesList">
+                            <td scope="row">{{employee.name}}</td>
+                            <td>{{employee.surname}}</td>
+                            <td>{{employee.phonenumber}}</td>
+                            <td>{{employee.userStatus}}</td>
+                            <td>{{employee.email}}</td>
+                            <td>{{employee.birthDate}}</td>
+                            <td>
+                                <button type="button" class="btn btn-outline-success btn-sm move-right w-50 fs-5" [routerLink]="['/edit-employee/', employee.id]">Edit</button>
+                                <button type="button" class="btn btn-outline-danger btn-sm w-50 fs-5" (click)="clickMethod(employee)">Remove</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-lg-none">
+    <div class="row">
+        <!-- Issue table -->
+        <div class="col-md-12">
+            <div class="inner">
+                <h3 >Employees</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name </th>
+                            <th scope="col">Surname</th>
+                            <th scope="col">Phonenumber</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">BirthDate</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let employee of  EmployeesList">
+                            <td scope="row">{{employee.name}}</td>
+                            <td>{{employee.surname}}</td>
+                            <td>{{employee.phonenumber}}</td>
+                            <td>{{employee.userStatus}}</td>
+                            <td>{{employee.email}}</td>
+                            <td>{{employee.birthDate}}</td>
+                            <td>
+                                <button type="button" class="btn btn-outline-success btn-sm move-right w-50 fs-5" [routerLink]="['/edit-employee/', employee.id]">Edit</button>
+                                <button type="button" class="btn btn-outline-danger btn-sm w-50 fs-5" (click)="clickMethod(employee)">Remove</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
