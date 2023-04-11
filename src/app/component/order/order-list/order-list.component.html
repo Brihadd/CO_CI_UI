@@ -1,0 +1,86 @@
+<div class="container wrapper d-none d-lg-block">
+    <div class="row">
+        <!-- Issue table -->
+        <div class="col-md-12">
+            <div class="inner">
+                <h3 >Employees</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                        <th scope="col">orderCode </th>
+                        <th scope="col">contractorFullName</th>
+                        <th scope="col">departmentName</th>
+                        <th scope="col">startDate</th>
+                        <th scope="col">endDate</th>
+                        <th scope="col">hourRate</th>
+                        <th scope="col">mDRate</th>
+                        <th scope="col">orderState</th>
+                        <th scope="col">info</th>
+                        <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let order of OrdersList">
+                        <td scope="row">{{order.orderCode}}</td>
+                        <td>{{order.contractorFullName}}</td>
+                        <td>{{order.departmentName}}</td>
+                        <td>{{order.startDate}}</td>
+                        <td>{{order.endDate}}</td>
+                        <td>{{order.hourRate}}</td>
+                        <td>{{order.endDate}}</td>
+                        <td>{{order.orderState}}</td>
+                        <td>{{order.info}}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-success btn-sm move-right w-50 fs-5" [routerLink]="['/edit-order/', order.id]">Edit</button>
+                            <button type="button" class="btn btn-outline-danger btn-sm w-50 fs-5" (click)="clickMethod(order)">Remove</button>
+                        </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-lg-none">
+    <div class="row">
+        <!-- Issue table -->
+        <div class="col-md-12">
+            <div class="inner">
+                <h3 >Employees</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                        <th scope="col">orderCode </th>
+                        <th scope="col">contractorFullName</th>
+                        <th scope="col">departmentName</th>
+                        <th scope="col">startDate</th>
+                        <th scope="col">endDate</th>
+                        <th scope="col">hourRate</th>
+                        <th scope="col">mDRate</th>
+                        <th scope="col">orderState</th>
+                        <th scope="col">info</th>
+                        <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let order of OrdersList">
+                        <td scope="row">{{order.orderCode}}</td>
+                        <td>{{order.contractorFullName}}</td>
+                        <td>{{order.departmentName}}</td>
+                        <td>{{order.startDate}}</td>
+                        <td>{{order.endDate}}</td>
+                        <td>{{order.hourRate}}</td>
+                        <td>{{order.endDate}}</td>
+                        <td>{{order.orderState}}</td>
+                        <td>{{order.info}}</td>
+                            <td>
+                                <button type="button" class="btn btn-outline-success btn-sm move-right w-50 fs-5" [routerLink]="['/edit-order/', order.id]">Edit</button>
+                                <button type="button" class="btn btn-outline-danger btn-sm w-50 fs-5" (click)="clickMethod(order)">Remove</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

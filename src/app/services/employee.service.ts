@@ -25,7 +25,7 @@ export class EmployeeService {
   GetAllEmployees(): Observable<Employee[]>{
     return this.http.get<Employee[]>(this.baseurl + '/api/Employee/GetAllEmployees').pipe(retry(1), catchError(this.errorHandl));
   }
-
+  
   CreateEmployee(employee: Employee) : Observable<boolean>{
     employee.userStatus=UserStatus.Contractor;
     return this.http.post<boolean>(

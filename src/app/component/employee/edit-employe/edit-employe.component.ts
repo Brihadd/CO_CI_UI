@@ -27,7 +27,7 @@ export class EditEmployeeComponent implements OnInit {
       this.updateEmployeeForm = this.fb.group({
         name: [data.name],
         surname:[data.surname],
-        phonenumber:[data.phonenumber],
+        phonenumber:[data.phoneNumber],
         email:[data.email],
         birthDate:[data.birthDate],
       })

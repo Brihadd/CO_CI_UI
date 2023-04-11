@@ -27,7 +27,7 @@ export class EmployeeListComponent implements OnInit {
     })
   }
   clickMethod(employee: any) {
-    if(confirm("Are you sure to delete this category")) {
+    if(confirm("Are you sure to delete this employee")) {
       console.log("Implement delete functionality here");
       this.deleteEmployee(employee);
     }

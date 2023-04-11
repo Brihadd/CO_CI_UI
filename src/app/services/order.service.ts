@@ -4,6 +4,7 @@ import {Order} from "../models/order";
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Baseurl } from '../models/baseurl';
+import { OrderParametr } from '../models/orderparametr';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,14 @@ export class OrderService {
     }),
   };
 
-  GetAllOrders(): Observable<Order[]>{
-    return this.http.get<Order[]>(this.baseurl + '/api/Order/GetAllOrders').pipe(retry(1), catchError(this.errorHandl));
+  GеtOrdersByParametr(orderparametr:OrderParametr): Observable<Order[]>{
+    return this.http
+      .post<Order[]>(
+        this.baseurl + '/api/Order/GetOrdersByParameters',
+        JSON.stringify(orderparametr),
+        this.httpOptions
+        )
+        .pipe(retry(1), catchError(this.errorHandl));
   }
 
   CreateOrder(order: Order) : Observable<boolean>{
@@ -32,11 +39,7 @@ export class OrderService {
       this.httpOptions
     ).pipe(retry(1), catchError(this.errorHandl));
   }
-  GetOrderById(id: any): Observable<Order> {
-    return this.http
-      .get<Order>(this.baseurl + '/api/Order/GetOrderById?id=' + id)
-      .pipe(retry(1), catchError(this.errorHandl));
-  }
+ 
   DeleteOrder(id: number) {
     return this.http
       .delete<Order>(this.baseurl + '/api/Order/DeleteOrder?id=' + id, this.httpOptions)

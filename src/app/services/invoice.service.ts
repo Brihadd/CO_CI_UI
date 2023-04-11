@@ -4,6 +4,7 @@ import {Invoice} from "../models/invoice";
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { Baseurl } from '../models/baseurl';
+import { InvoiceParametr } from '../models/invoiceparametr';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,15 @@ export class InvoiceService {
     }),
   };
 
-  GetAllInvoices(): Observable<Invoice[]>{
-    return this.http.get<Invoice[]>(this.baseurl + '/api/Invoice/GetAllInvoices').pipe(retry(1), catchError(this.errorHandl));
+  
+  GetInvoicesByParametr(invoiceparametr:InvoiceParametr): Observable<Invoice[]>{
+    return this.http
+      .put<Invoice[]>(
+        this.baseurl + '/api/Order/GetInvoicesByParameters',
+        JSON.stringify(invoiceparametr),
+        this.httpOptions
+        )
+        .pipe(retry(1), catchError(this.errorHandl));
   }
 
   CreateInvoice(invoice: Invoice) : Observable<boolean>{
@@ -32,11 +40,7 @@ export class InvoiceService {
       this.httpOptions
     ).pipe(retry(1), catchError(this.errorHandl));
   }
-  GetInvoiceById(id: any): Observable<Invoice> {
-    return this.http
-      .get<Invoice>(this.baseurl + '/api/Invoice/GetInvoiceById?id=' + id)
-      .pipe(retry(1), catchError(this.errorHandl));
-  }
+
   DeleteInvoice(id: number) {
     return this.http
       .delete<Invoice>(this.baseurl + '/api/Employee/DeleteInvoice?id=' + id, this.httpOptions)

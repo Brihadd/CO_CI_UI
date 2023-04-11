@@ -24,6 +24,10 @@ export class AddEmployeeComponent implements OnInit {
   CreateEmployee() {
     this.employeeForm = this.fb.group({
       name: [''],
+      surname:[''],
+      phonenumber:[''],
+      email:[''],
+      birthDate:[new Date("1970-01-01")]
     });
   }
   submitForm() {

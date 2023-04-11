@@ -9,6 +9,8 @@ import { EditEmployeeComponent } from './component/employee/edit-employe/edit-em
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login/login.component';
+import { OrderListComponent } from './component/order/order-list/order-list.component';
+
 
 
 @NgModule({
@@ -18,6 +20,8 @@ import { LoginComponent } from './login/login/login.component';
     AddEmployeeComponent,
     EditEmployeeComponent,
     LoginComponent,
+    OrderListComponent,
+    
   ],
   imports: [
     FormsModule,

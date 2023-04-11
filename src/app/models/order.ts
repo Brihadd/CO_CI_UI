@@ -2,18 +2,18 @@ export class Order{
     id:number=0
     orderCode:string=''
     contractorId:string=''
-    contractorName:string=''
+    contractorFullName:string=''
     departmentId:string=''
     departmentName:string=''
     startDate:Date = new Date("1970-01-01")
     endDate:Date = new Date("1970-01-01")
     hourRate:number=0
     mDRate:number=0
-    orderState:OrderState=OrderState.New
+    orderState:OrderState=OrderState.Default
     info:string=''
   }
   export enum OrderState{
-    New,
+    Order,
     Canceled,
     ManagerApproved,
     ContractorApproved,
